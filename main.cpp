@@ -10,12 +10,15 @@ int main() {
     Radio Radio;
     Exceptions Exception;
 
-    cout << "\nPress W,S to adjust the volume of the radio\nPress A,D to adjust the station of the radio\nPress X to exit the radio\n";
+    setlocale(LC_ALL, "rus");
     char option;
     do {
+        cout << "\033c";
+        cout << "\nPress W,S to adjust the volume of the radio\nPress A,D to adjust the station of the radio\nPress X to exit the radio\n";
         cout << "\nVolume: " << Radio.getVolume() << endl;
-        cout << "Station № " << Radio.getStation() << endl;
+        cout << "Station:  " << Radio.getStation() << endl;
         option = Exception.allowedIndex();
+
         switch (option) {
             case 'a': {
                 Radio.previousStation();
