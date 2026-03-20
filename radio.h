@@ -20,6 +20,8 @@ public:
         m_volume = 3;
         m_station = MIN_STATION;
     }
+    Radio(Radio const &other);
+    Radio& operator=(Radio const& other);
 
     unsigned int getVolume() const;
     unsigned int getStation() const;
@@ -34,6 +36,11 @@ public:
 
     void nextStation();
     void previousStation();
+
+    Radio& operator++();
+    Radio operator ++(int);
+    Radio& operator--();
+    Radio operator--(int);
 
     ~Radio();
 };
