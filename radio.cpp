@@ -3,6 +3,16 @@
 
 using namespace std;
 
+Radio::Radio(Radio const& other) : m_volume(other.m_volume),m_station(other.m_station){};
+Radio &Radio::operator=(Radio const &other) {
+    if (this != &other) {
+        m_volume = other.m_volume;
+        m_station = other.m_station;
+    }
+    return *this;
+}
+
+
 unsigned int Radio::getVolume() const {return m_volume;};
 unsigned int Radio::getStation() const{return m_station;};
 int Radio::getMaxVolume() const {return MAX_VOLUME;};
@@ -36,5 +46,25 @@ void Radio::previousStation() {
         m_station -= 1;
     }
 }
+
+Radio& Radio::operator++() {
+    nextStation();
+    return *this;
+}
+Radio Radio::operator++(int) {
+    Radio temp(*this);
+    ++(*this);
+    return temp;
+}
+Radio& Radio::operator--() {
+    previousStation();
+    return *this;
+}
+Radio Radio::operator--(int) {
+    Radio temp(*this);
+    --(*this);
+    return temp;
+}
+
 
 Radio::~Radio() {}
